@@ -15,14 +15,12 @@ def one_hot_encode(y, n_classes=35):
     Y format cross-entropy's dZ2 = A2 - Y shortcut requires.
 
     Parameters
-    ----------
     y : np.ndarray, shape (n_samples,)
         Integer class labels.
     n_classes : int
         Total number of classes.
 
     Returns
-    -------
     np.ndarray, shape (n_classes, n_samples)
         One-hot encoded labels, one column per sample.
     """
@@ -34,11 +32,8 @@ def one_hot_encode(y, n_classes=35):
 def get_mini_batches(X, y, batch_size, rng):
     """
     Shuffles the dataset and splits it into mini-batches for one epoch.
-    Shuffling each epoch prevents the network from learning any
-    accidental ordering in the stored data.
 
     Parameters
-    ----------
     X : np.ndarray, shape (n_samples, n_features)
         Input data, rows are samples (as stored in the .npz file).
     y : np.ndarray, shape (n_samples,)
@@ -49,7 +44,6 @@ def get_mini_batches(X, y, batch_size, rng):
         Seeded random generator, for reproducible shuffling.
 
     Yields
-    ------
     X_batch : np.ndarray, shape (n_features, batch_size)
         Transposed so it's ready to feed directly into
         forward_propagation (features as rows, samples as columns).
@@ -70,14 +64,12 @@ def compute_accuracy(A2, y):
     probability class matches the true label.
 
     Parameters
-    ----------
     A2 : np.ndarray, shape (n_classes, n_samples)
         Predicted probabilities from forward_propagation.
     y : np.ndarray, shape (n_samples,)
         True integer class labels.
 
     Returns
-    -------
     float
         Accuracy, between 0 and 1.
     """
@@ -91,13 +83,10 @@ def train(X_train, y_train, X_val, y_val, layer_dims,
     forward -> loss -> backward -> update once per mini-batch, and
     evaluating on the validation set after every epoch.
 
-    Tracks the parameters that achieved the best validation accuracy
-    seen during training, and returns those instead of whatever the
-    final epoch happened to land on -- validation accuracy can swing
-    between epochs, so the last epoch isn't necessarily the best one.
+    Tracks the parameters that achieved the best validation accuracyseen during training, and returns those instead of whatever the
+    final epoch happened to land on -- validation accuracy can swingbetween epochs, so the last epoch isn't necessarily the best one.
 
     Parameters
-    ----------
     X_train, y_train : np.ndarray
         Training data, rows are samples.
     X_val, y_val : np.ndarray
@@ -114,13 +103,10 @@ def train(X_train, y_train, X_val, y_val, layer_dims,
         Random seed for reproducible initialization and shuffling.
 
     Returns
-    -------
     best_params : dict
-        Weights and biases (W1, b1, W2, b2) from the epoch with the
-        highest validation accuracy seen during training.
+        Weights and biases (W1, b1, W2, b2) from the epoch with thehighest validation accuracy seen during training.
     history : dict
-        Lists of train_loss, val_loss, and val_accuracy, one entry
-        per epoch, for plotting learning curves.
+        Lists of train_loss, val_loss, and val_accuracy, one entry per epoch, for plotting learning curves.
     """
     rng = np.random.default_rng(seed)
     params = initialize_parameters(layer_dims, seed=seed)
